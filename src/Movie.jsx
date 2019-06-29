@@ -22,4 +22,10 @@ Movie.propTypes = {
 	}).isRequired,
 };
 
-export const Poster = styled.img`box-shadow: 0 0 35px black;`;
+export const Poster = styled.img`
+	box-shadow: 0 0 35px black;
+	:hover {
+		box-shadow: 0 0 35px white;
+		transform: scale(1.2);
+	}
+`;

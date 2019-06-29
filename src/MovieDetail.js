@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Poster } from './Movie';
 import Overdrive from 'react-overdrive';
 
@@ -32,9 +33,11 @@ class MovieDetail extends PureComponent {
 		return (
 			<MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
 				<MovieInfo>
-					<Overdrive id={movie.id}>
-						<Poster src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
-					</Overdrive>
+					<Link to='/'>
+						<Overdrive id={movie.id}>
+							<Poster src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
+						</Overdrive>
+					</Link>
 					<div>
 						<h1>{movie.title}</h1>
 						<h3>{movie.release_date}</h3>

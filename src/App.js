@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import logo from './logo.svg';
+import styled from 'styled-components';
 import './App.css';
 import MoviesList from './MoviesList';
 import MovieDetail from './MovieDetail';
@@ -10,7 +10,7 @@ const App = () => (
 		<div className='App'>
 			<header className='App-header'>
 				<Link to='/'>
-					<img src={logo} className='App-logo' alt='logo' />
+					<HeaderWrapper>Movie Time</HeaderWrapper>
 				</Link>
 			</header>
 			<Switch>
@@ -22,3 +22,14 @@ const App = () => (
 );
 
 export default App;
+
+const HeaderWrapper = styled.h1`
+	margin: 0 auto;
+	width: 25%;
+	text-decoration: none;
+	color: white;
+	:hover {
+		transform: scale(1.1);
+		text-shadow: #999 0px 0px 15px;
+	}
+`;
