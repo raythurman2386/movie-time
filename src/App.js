@@ -7,24 +7,33 @@ import MovieDetail from './MovieDetail';
 
 const App = () => (
 	<Router>
-		<div className='App'>
-			<header className='App-header'>
+		<AppWrapper className='App'>
+			<AppHeader className='App-header'>
 				<Link to='/'>
 					<HeaderWrapper>Movie Time</HeaderWrapper>
 				</Link>
-			</header>
+			</AppHeader>
 			<Switch>
 				<Route exact path='/' component={MoviesList} />
 				<Route path='/:id' component={MovieDetail} />
 			</Switch>
-		</div>
+		</AppWrapper>
 	</Router>
 );
 
 export default App;
 
+const AppWrapper = styled.div`text-align: center;`;
+
+const AppHeader = styled.header`
+	background-color: #111;
+	color: white;
+	height: 6rem;
+`;
+
 const HeaderWrapper = styled.h1`
 	margin: 0 auto;
+	padding-top: 1rem;
 	width: 25%;
 	text-decoration: none;
 	color: white;
