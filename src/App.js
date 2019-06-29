@@ -1,9 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import './App.css';
-import MoviesList from './MoviesList';
-import MovieDetail from './MovieDetail';
+import MoviesList from './components/MoviesList';
+import MovieDetail from './components/MovieDetail';
 
 const App = () => (
 	<Router>
