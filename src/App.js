@@ -41,4 +41,7 @@ const HeaderWrapper = styled.h1`
 		transform: scale(1.1);
 		text-shadow: #999 0px 0px 15px;
 	}
+	@media (max-width: 500px) {
+		width: 100%;
+	}
 `;
