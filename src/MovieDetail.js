@@ -32,7 +32,9 @@ class MovieDetail extends Component {
 		return (
 			<MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
 				<MovieInfo>
-					<Poster src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
+					<Overdrive id={movie.id}>
+						<Poster src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
+					</Overdrive>
 					<div>
 						<h1>{movie.title}</h1>
 						<h3>{movie.release_date}</h3>
