@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { Poster } from './Movie';
 import Overdrive from 'react-overdrive';
@@ -6,7 +6,7 @@ import Overdrive from 'react-overdrive';
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
 const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280';
 
-class MovieDetail extends Component {
+class MovieDetail extends PureComponent {
 	state = {
 		movie : {},
 	};
