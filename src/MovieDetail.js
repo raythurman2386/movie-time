@@ -56,7 +56,8 @@ const MovieWrapper = styled.div`
 `;
 
 const MovieInfo = styled.div`
-	background: white;
+	background: crimson;
+	text-shadow: #999 0px 0px 15px;
 	text-align: left;
 	padding: 2rem 10%;
 	display: flex;
