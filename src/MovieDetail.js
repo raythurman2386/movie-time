@@ -54,7 +54,7 @@ export default MovieDetail;
 const MovieWrapper = styled.div`
 	position: relative;
 	padding-top: 50vh;
-	background: url(${(props) => props.backdrop}) no-repeat;
+	background: url(${(props) => props.backdrop}) no-repeat center;
 	background-size: cover;
 `;
 
@@ -71,7 +71,8 @@ const MovieInfo = styled.div`
 		position: relative;
 		top: -5rem;
 	}
-	media(max-width: 500px) {
+	@media (max-width: 500px) {
 		flex-direction: column;
+		padding: 1rem 5%;
 	}
 `;
