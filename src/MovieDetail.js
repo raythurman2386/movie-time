@@ -68,4 +68,7 @@ const MovieInfo = styled.div`
 		position: relative;
 		top: -5rem;
 	}
+	media(max-width: 500px) {
+		flex-direction: column;
+	}
 `;
