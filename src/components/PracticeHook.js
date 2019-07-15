@@ -7,10 +7,11 @@ import Overdrive from 'react-overdrive';
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
 const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280';
 
-const MovieDetail = () => (
+const MovieDetail = () => {
   const [movie, setMovie] = useState({});
 
 	useEffect(()=>{
+		//callback function
     try {
       const result = await fetch(
         `https://api.themoviedb.org/3/movie/${movie.match.params
@@ -25,7 +26,9 @@ const MovieDetail = () => (
     } catch (e) {
       console.log(e);
     }
-  })
+	},
+		[]
+	)
 
 		return (
 			<MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
@@ -43,7 +46,7 @@ const MovieDetail = () => (
 				</MovieInfo>
 			</MovieWrapper>
 		);
-)
+		}
 
 export default MovieDetail;
 
