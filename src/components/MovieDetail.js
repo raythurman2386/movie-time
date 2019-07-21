@@ -34,8 +34,8 @@ const MovieDetail = (props) => {
 		[ props.match.params.id ],
 	);
 
-	console.log(movie.movie, 'movie');
-	console.log(movie.movie.id, 'movie id');
+	// console.log(movie.movie, 'movie');
+	// console.log(movie.movie.id, 'movie id');
 
 	// set variable to remove redundancy
 	const movieInfo = movie.movie;
