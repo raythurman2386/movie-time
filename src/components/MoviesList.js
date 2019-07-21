@@ -11,30 +11,27 @@ const MoviesList = () => {
 	});
 
 	// hook for api
-	useEffect(
-		() => {
-			axios
-				// get data from the API
-				.get(
-					'https://api.themoviedb.org/3/discover/movie?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1',
-				)
-				// set the results to state
-				.then((result) => {
-					// console.log(result, 'result');
-					setMovies({ movies: result.data.json() });
-				})
-				// catch errors
-				.catch((err) => console.log(err));
-		},
-		[ movies ],
-	);
+	useEffect(() => {
+		axios
+			// get data from the API
+			.get(
+				'https://api.themoviedb.org/3/discover/movie?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1',
+			)
+			// set the results to state
+			.then((response) => {
+				console.log(response, 'response');
+				setMovies({ movies: response.data.results });
+			})
+			// catch errors
+			.catch((err) => console.log(err));
+	}, []);
 
-	console.log(movies.movies, 'movie');
+	console.log(movies, 'movie');
 
 	return (
 		<MovieGrid>
 			{/* { Loop over data and display } */}
-			{movies.map((movie) => <Movie key={movie.id} movie={movie} />)}
+			{movies.movies.map((movie) => <Movie key={movie.id} movie={movie} />)}
 		</MovieGrid>
 	);
 };
