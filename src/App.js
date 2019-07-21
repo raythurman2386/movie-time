@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MoviesList from './components/MoviesList';
 import MovieDetail from './components/MovieDetail';
+// import PracticeHook from './components/PracticeHook';
 
 const App = () => (
 	<Router>
@@ -15,6 +16,7 @@ const App = () => (
 			<Switch>
 				<Route exact path='/' component={MoviesList} />
 				<Route path='/:id' component={MovieDetail} />
+				{/* <Route path='/:id' component={PracticeHook} /> */}
 			</Switch>
 		</AppWrapper>
 	</Router>
