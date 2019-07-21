@@ -8,19 +8,20 @@ import Overdrive from 'react-overdrive';
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
 const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280';
 
-const MovieDetail = () => {
+const MovieDetail = (props) => {
 	// movies hook for state
 	const [ movie, setMovie ] = useState({
 		movie : [],
 	});
-
+	console.log(props, 'props');
 	// hook for api
 	useEffect(
 		() => {
 			axios
 				// get data from the API
 				.get(
-					`https://api.themoviedb.org/3/movie/${movie.id}?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US`,
+					`https://api.themoviedb.org/3/movie/${props.match.params
+						.id}?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US`,
 				)
 				// set the results to state
 				.then((response) => {
@@ -30,11 +31,11 @@ const MovieDetail = () => {
 				// catch errors
 				.catch((err) => console.log(err));
 		},
-		[ movie.id ],
+		[ props.match.params.id ],
 	);
 
 	return (
-		<MovieWrapper backdrop={`${BACKDROP_PATH}${movie.movie.backdrop_path}`}>
+		<MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
 			<MovieInfo>
 				<Link to='/'>
 					<Overdrive id={movie.id}>

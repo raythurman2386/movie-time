@@ -4,12 +4,14 @@ import styled from 'styled-components';
 import MoviesList from './components/MoviesList';
 import MovieDetail from './components/MovieDetail';
 
+import Logo from './images/movietime.svg';
+
 const App = () => (
 	<Router>
 		<AppWrapper className='App'>
 			<AppHeader className='App-header'>
 				<Link to='/'>
-					<HeaderWrapper src='#' alt='movie time' />
+					<HeaderWrapper src={Logo} alt='movie time' />
 				</Link>
 			</AppHeader>
 			<Switch>
