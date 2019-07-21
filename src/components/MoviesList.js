@@ -19,18 +19,19 @@ const MoviesList = () => {
 			)
 			// set the results to state
 			.then((response) => {
-				console.log(response, 'response');
+				// console.log(response, 'response');
 				setMovies({ movies: response.data.results });
 			})
 			// catch errors
 			.catch((err) => console.log(err));
 	}, []);
 
-	console.log(movies, 'movie');
+	console.log(movies.movies, 'movie');
 
 	return (
 		<MovieGrid>
 			{/* { Loop over data and display } */}
+			{/* {movies.movies.map((movie) => console.log(movie.id, 'inside'))}, */}
 			{movies.movies.map((movie) => <Movie key={movie.id} movie={movie} />)}
 		</MovieGrid>
 	);
