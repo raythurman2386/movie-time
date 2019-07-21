@@ -43,6 +43,6 @@ const MovieGrid = styled.div`
 	margin: 0 auto;
 	display: grid;
 	padding: 1rem;
-	grid-template-columns: repeat(auto-fill);
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	grid-row-gap: 2rem;
 `;
