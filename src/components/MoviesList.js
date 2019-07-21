@@ -26,7 +26,7 @@ const MoviesList = () => {
 			.catch((err) => console.log(err));
 	}, []);
 
-	console.log(movies.movies, 'movie');
+	// console.log(movies.movies, 'movie');
 
 	return (
 		<MovieGrid>

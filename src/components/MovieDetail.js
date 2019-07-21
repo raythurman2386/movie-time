@@ -13,7 +13,7 @@ const MovieDetail = (props) => {
 	const [ movie, setMovie ] = useState({
 		movie : [],
 	});
-	console.log(props, 'props');
+	// console.log(props, 'props');
 	// hook for api
 	useEffect(
 		() => {
@@ -25,8 +25,8 @@ const MovieDetail = (props) => {
 				)
 				// set the results to state
 				.then((response) => {
-					console.log(response, 'response');
-					setMovie({ movie: response.data.results });
+					// console.log(response, 'response');
+					setMovie({ movie: response.data });
 				})
 				// catch errors
 				.catch((err) => console.log(err));
@@ -34,21 +34,23 @@ const MovieDetail = (props) => {
 		[ props.match.params.id ],
 	);
 
+	// console.log(movie, 'movie');
+
 	return (
-		<MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
+		<MovieWrapper backdrop={`${BACKDROP_PATH}${movie.movie.backdrop_path}`}>
 			<MovieInfo>
 				<Link to='/'>
-					<Overdrive id={movie.id}>
+					<Overdrive id={movie.movie.id}>
 						<Poster
-							src={`${POSTER_PATH}${movie.poster_path}`}
-							alt={movie.title}
+							src={`${POSTER_PATH}${movie.movie.poster_path}`}
+							alt={movie.movie.title}
 						/>
 					</Overdrive>
 				</Link>
 				<div>
-					<h1>{movie.title}</h1>
-					<h3>{movie.release_date}</h3>
-					<p>{movie.overview}</p>
+					<h1>{movie.movie.title}</h1>
+					<h3>{movie.movie.release_date}</h3>
+					<p>{movie.movie.overview}</p>
 				</div>
 			</MovieInfo>
 		</MovieWrapper>

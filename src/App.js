@@ -36,14 +36,11 @@ const AppHeader = styled.header`
 const HeaderWrapper = styled.img`
 	margin: 0 auto;
 	padding-top: 1rem;
-	width: 25%;
 	text-decoration: none;
+	width: 240px;
 	color: white;
 	:hover {
 		transform: scale(1.1);
 		text-shadow: #999 0px 0px 15px;
-	}
-	@media (max-width: 500px) {
-		width: 100%;
 	}
 `;
