@@ -17,7 +17,6 @@ const App = () => (
 			<Switch>
 				<Route exact path='/' component={MoviesList} />
 				<Route path='/:id' component={MovieDetail} />
-				{/* <Route path='/:id' component={PracticeHook} /> */}
 			</Switch>
 		</AppWrapper>
 	</Router>
