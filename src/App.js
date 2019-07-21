@@ -9,7 +9,7 @@ const App = () => (
 		<AppWrapper className='App'>
 			<AppHeader className='App-header'>
 				<Link to='/'>
-					<HeaderWrapper>Movie Time</HeaderWrapper>
+					<HeaderWrapper src='#' alt='movie time' />
 				</Link>
 			</AppHeader>
 			<Switch>
@@ -31,7 +31,7 @@ const AppHeader = styled.header`
 	height: 6rem;
 `;
 
-const HeaderWrapper = styled.h1`
+const HeaderWrapper = styled.img`
 	margin: 0 auto;
 	padding-top: 1rem;
 	width: 25%;
