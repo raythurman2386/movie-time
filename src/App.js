@@ -5,6 +5,7 @@ import MoviesList from './components/MoviesList';
 import MovieDetail from './components/MovieDetail';
 
 import Logo from './images/movietime.svg';
+import './components/search.scss';
 
 const App = () => (
 	<Router>
@@ -13,6 +14,13 @@ const App = () => (
 				<Link to='/'>
 					<HeaderWrapper src={Logo} alt='movie time' />
 				</Link>
+				<input
+					type='search'
+					class='search-input'
+					name='movie-search'
+					placeholder='...Search'
+					style={searchInput}
+				/>
 			</AppHeader>
 			<Switch>
 				<Route exact path='/' component={MoviesList} />
@@ -30,11 +38,13 @@ const AppHeader = styled.header`
 	background-color: #111;
 	color: white;
 	height: 6rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 `;
 
 const HeaderWrapper = styled.img`
-	margin: 0 auto;
-	padding-top: 1rem;
+	margin: auto;
 	text-decoration: none;
 	width: 240px;
 	color: white;
@@ -43,3 +53,14 @@ const HeaderWrapper = styled.img`
 		text-shadow: #999 0px 0px 15px;
 	}
 `;
+
+// const searchInput = styled.input`padding: ;`;
+
+const searchInput = {
+	margin       : '0 .25rem',
+	padding      : '0.5rem',
+	minWidth     : '125px',
+	border       : '1px solid #eee',
+	borderRadius : '5px',
+	transition   : 'border-color .5s ease-out',
+};
