@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import styled from 'styled-components';
 import MoviesList from './components/MoviesList';
 import MovieDetail from './components/MovieDetail';
+import MovieSearch from './components/MovieSearch';
 
 import Logo from './images/movietime.svg';
 import './components/search.scss';
@@ -25,6 +26,7 @@ const App = () => (
 			<Switch>
 				<Route exact path='/' component={MoviesList} />
 				<Route path='/:id' component={MovieDetail} />
+				{/* <Route path='/search' component={MovieSearch} /> */}
 			</Switch>
 		</AppWrapper>
 	</Router>

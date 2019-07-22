@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { Poster } from './Movie';
+// import { Link } from 'react-router-dom';
+import Movie from './Movie';
+// import { Poster } from './Movie';
 // import Overdrive from 'react-overdrive';
 
-const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
-const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280';
+// const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
+// const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280';
 
 const MovieSearch = (props) => {
 	// movies hook for state
@@ -15,21 +16,24 @@ const MovieSearch = (props) => {
 	});
 	// console.log(props, 'props');
 	// hook for api
-	useEffect(() => {
-		axios
-			// get data from the API
-			.get(
-				`https://api.themoviedb.org/3/movie?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&query=${props
-					.match.params.title}`,
-			)
-			// set the results to state
-			.then((response) => {
-				// console.log(response, 'response');
-				setMovie({ movie: response.data });
-			})
-			// catch errors
-			.catch((err) => console.log(err));
-	}, [props.match.params.title]);
+	useEffect(
+		() => {
+			axios
+				// get data from the API
+				.get(
+					`https://api.themoviedb.org/3/movie?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&query=${props
+						.match.params.title}`,
+				)
+				// set the results to state
+				.then((response) => {
+					console.log(response, 'response');
+					setMovie({ movie: response.data });
+				})
+				// catch errors
+				.catch((err) => console.log(err));
+		},
+		[ props.match.params.title ],
+	);
 
 	// console.log(movie.movie, 'movie');
 	// console.log(movie.movie.id, 'movie id');

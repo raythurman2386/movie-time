@@ -21,11 +21,11 @@ const MovieDetail = (props) => {
 				// get data from the API
 				.get(
 					`https://api.themoviedb.org/3/movie/${props.match.params
-						.id}?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US`,
+						.id}?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&append_to_response=videos`,
 				)
 				// set the results to state
 				.then((response) => {
-					// console.log(response, 'response');
+					console.log(response, 'response');
 					setMovie({ movie: response.data });
 				})
 				// catch errors
@@ -34,7 +34,7 @@ const MovieDetail = (props) => {
 		[ props.match.params.id ],
 	);
 
-	// console.log(movie.movie, 'movie');
+	console.log(movie.movie, 'movie');
 	// console.log(movie.movie.id, 'movie id');
 
 	// set variable to remove redundancy
