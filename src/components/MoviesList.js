@@ -36,30 +36,6 @@ class MoviesList extends PureComponent {
 	}
 }
 
-// const MoviesList = () => {
-// 	const [ movies, setMovies ] = useState({});
-
-// 	useEffect(() => {
-// 		axios
-// 			.get(
-// 				'https://api.themoviedb.org/3/discover/movie?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1',
-// 			)
-// 			.then((result) => {
-// 				const movies = result.json();
-// 				setMovies(movies.results);
-// 			})
-// 			.catch((err) => console.log(err));
-// 	}, []);
-
-// 	console.log(movies);
-
-// 	return (
-// 		<MovieGrid>
-// 			{movies.map((movie) => <Movie key={movie.id} movie={movie} />)}
-// 		</MovieGrid>
-// 	);
-// };
-
 export default MoviesList;
 
 const MovieGrid = styled.div`
