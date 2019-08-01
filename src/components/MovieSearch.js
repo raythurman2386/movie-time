@@ -23,9 +23,9 @@ const MovieSearch = (props) => {
 				'https://api.themoviedb.org/3/search/movie?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&query=jack%20reacher&page=1&include_adult=false',
 			)
 			// set the results to state
-			.then((response) => {
-				console.log(response, 'response');
-				// setMovie({ movie: response.data });
+			.then((res) => {
+				console.log(res.data, 'response');
+				setMovie({ movie: res.data });
 			})
 			// catch errors
 			.catch((err) => console.log(err));
