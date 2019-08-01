@@ -19,12 +19,16 @@ const MovieSearch = (props) => {
 	useEffect(() => {
 		axios
 			// get data from the API
-			.get(
-				'https://api.themoviedb.org/3/search/movie?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&query=jack%20reacher&page=1&include_adult=false',
-			)
+			.get('https://api.themoviedb.org/3/search/movie?', {
+				params : {
+					api_key  : '3e11806009cadfb91187ad7b65b9dc21',
+					language : 'en_US',
+					query    : 'Jack Reacher',
+				},
+			})
 			// set the results to state
 			.then((res) => {
-				console.log(res.data, 'response');
+				console.log(res.data.results, 'response');
 				setMovie({ movie: res.data });
 			})
 			// catch errors
