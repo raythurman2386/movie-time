@@ -16,24 +16,20 @@ const MovieSearch = (props) => {
 	});
 	// console.log(props, 'props');
 	// hook for api
-	useEffect(
-		() => {
-			axios
-				// get data from the API
-				.get(
-					`https://api.themoviedb.org/3/movie?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&query=${props
-						.match.params.title}`,
-				)
-				// set the results to state
-				.then((response) => {
-					console.log(response, 'response');
-					setMovie({ movie: response.data });
-				})
-				// catch errors
-				.catch((err) => console.log(err));
-		},
-		[ props.match.params.title ],
-	);
+	useEffect(() => {
+		axios
+			// get data from the API
+			.get(
+				`https://api.themoviedb.org/3/search/movie?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&query=jack%20reacher&page=1&include_adult=false`,
+			)
+			// set the results to state
+			.then((response) => {
+				console.log(response, 'response');
+				// setMovie({ movie: response.data });
+			})
+			// catch errors
+			.catch((err) => console.log(err));
+	}, []);
 
 	// console.log(movie.movie, 'movie');
 	// console.log(movie.movie.id, 'movie id');
