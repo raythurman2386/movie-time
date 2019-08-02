@@ -1,53 +1,63 @@
-import React, { PureComponent } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Poster } from './Movie';
-import Overdrive from 'react-overdrive';
+// import Overdrive from 'react-overdrive';
 
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w154';
 const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280';
 
-class MovieDetail extends PureComponent {
-	state = {
-		movie : {},
-	};
+const MovieDetail = (props) => {
+	// movies hook for state
+	const [ movie, setMovie ] = useState({
+		movie : [],
+	});
+	// console.log(props, 'props');
+	// hook for api
+	useEffect(
+		() => {
+			axios
+				// get data from the API
+				.get(
+					`https://api.themoviedb.org/3/movie/${props.match.params
+						.id}?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&append_to_response=videos`,
+				)
+				// set the results to state
+				.then((response) => {
+					// console.log(response, "response");
+					setMovie({ movie: response.data });
+				})
+				// catch errors
+				.catch((err) => console.log(err));
+		},
+		[ props.match.params.id ],
+	);
 
-	async componentDidMount() {
-		try {
-			const result = await fetch(
-				`https://api.themoviedb.org/3/movie/${this.props.match.params
-					.id}?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US`,
-			);
-			const movie = await result.json();
+	// console.log(movie.movie, 'movie');
+	// console.log(movie.movie.id, 'movie id');
 
-			this.setState({
-				movie : movie,
-			});
-		} catch (e) {
-			console.log(e);
-		}
-	}
+	// set variable to remove redundancy
+	const movieInfo = movie.movie;
 
-	render() {
-		const { movie } = this.state;
-		return (
-			<MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
-				<MovieInfo>
-					<Link to='/'>
-						<Overdrive id={movie.id}>
-							<Poster src={`${POSTER_PATH}${movie.poster_path}`} alt={movie.title} />
-						</Overdrive>
-					</Link>
-					<div>
-						<h1>{movie.title}</h1>
-						<h3>{movie.release_date}</h3>
-						<p>{movie.overview}</p>
-					</div>
-				</MovieInfo>
-			</MovieWrapper>
-		);
-	}
-}
+	return (
+		<MovieWrapper backdrop={`${BACKDROP_PATH}${movieInfo.backdrop_path}`}>
+			<MovieInfo>
+				<Link to='/'>
+					{/* <Overdrive id={movieInfo.id}> */}
+					<Poster src={`${POSTER_PATH}${movieInfo.poster_path}`} alt={movieInfo.title} />
+					{/* </Overdrive> */}
+				</Link>
+				<div>
+					<h1>{movieInfo.title}</h1>
+					<h3>{movieInfo.release_date}</h3>
+					<h4>{movieInfo.tagline}</h4>
+					<p>{movieInfo.overview}</p>
+				</div>
+			</MovieInfo>
+		</MovieWrapper>
+	);
+};
 
 export default MovieDetail;
 
