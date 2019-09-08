@@ -1,39 +1,42 @@
 /* eslint react/no-did-mount-set-state: 0 */
-import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import Movie from './Movie';
+import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
+import Movie from './Movie'
+import axios from 'axios'
 
-class MoviesList extends PureComponent {
-	state = {
-		movies: [],
-	};
+const MoviesList = () => {
+  const [movies, setMovies] = useState({
+    movies: [],
+  })
 
-	async componentDidMount() {
-		try {
-			const res = await fetch(
-				'https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1',
-			);
-			const movies = await res.json();
-			this.setState({
-				movies: movies.results,
-			});
-		} catch (e) {
-			console.log(e);
-		}
-	}
+  useEffect(() => {
+    axios
+      .get(
+        'https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1',
+      )
+      .then(res => {
+        console.log(res.data.results)
+        setMovies(res.data.results)
+      })
+      .catch(err => console.log(err))
+  }, [])
 
-	render() {
-		return <MovieGrid>{this.state.movies.map((movie) => <Movie key={movie.id} movie={movie} />)}</MovieGrid>;
-	}
+  console.log(movies, 'movies')
+
+  return (
+    <MovieGrid>
+      {movies && movies.map(movie => <Movie key={movie.id} movie={movie} />)}
+    </MovieGrid>
+  )
 }
 
-export default MoviesList;
+export default MoviesList
 
 const MovieGrid = styled.div`
-	max-width: 1280px;
-	margin: 0 auto;
-	display: grid;
-	padding: 1rem;
-	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-	grid-row-gap: 2rem;
-`;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-row-gap: 2rem;
+`
