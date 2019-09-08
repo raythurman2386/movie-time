@@ -5,27 +5,30 @@ import Movie from './Movie'
 import axios from 'axios'
 
 const MoviesList = () => {
+  // hook for the movies
   const [movies, setMovies] = useState({
     movies: [],
   })
 
+  // hook to grab the movies
   useEffect(() => {
     axios
       .get(
         'https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1',
       )
       .then(res => {
-        console.log(res.data.results)
+        // set the movies to state
         setMovies(res.data.results)
       })
-      .catch(err => console.log(err))
+      // error handling
+      .catch(err => console.log(err.response))
   }, [])
 
   console.log(movies, 'movies')
 
   return (
     <MovieGrid>
-      {movies && movies.map(movie => <Movie key={movie.id} movie={movie} />)}
+      {/* {movies && movies.map(movie => <Movie key={movie.id} movie={movie} />)} */}
     </MovieGrid>
   )
 }
