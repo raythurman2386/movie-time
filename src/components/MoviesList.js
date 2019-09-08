@@ -26,9 +26,13 @@ const MoviesList = () => {
 
   console.log(movies, 'movies')
 
+  !movies && <h1>Loading . . .</h1>
+
   return (
     <MovieGrid>
-      {/* {movies && movies.map(movie => <Movie key={movie.id} movie={movie} />)} */}
+      {movies.map(movie => (
+        <Movie key={movie.id} movie={movie} />
+      ))}
     </MovieGrid>
   )
 }
