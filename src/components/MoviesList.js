@@ -14,7 +14,7 @@ const MoviesList = () => {
   useEffect(() => {
     axios
       .get(
-        'https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1',
+        'https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1',
       )
       .then(res => {
         // set the movies to state
@@ -26,13 +26,15 @@ const MoviesList = () => {
 
   console.log(movies, 'movies')
 
-  !movies && <h1>Loading . . .</h1>
+  if (!movies) {
+    return <div>Loading movies...</div>
+  }
 
   return (
     <MovieGrid>
-      {movies.map(movie => (
+      {/* {movies.map(movie => (
         <Movie key={movie.id} movie={movie} />
-      ))}
+      ))} */}
     </MovieGrid>
   )
 }
