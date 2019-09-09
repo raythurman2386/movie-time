@@ -6,7 +6,10 @@ import axios from 'axios'
 const SearchInput = props => {
   // movies hook for state
   const [movie, setMovie] = useState([])
-  // console.log(props, 'props');
+  const [input, setInput] = useState({
+    title: '',
+  })
+
   // hook for api
   useEffect(() => {
     axios
@@ -15,7 +18,7 @@ const SearchInput = props => {
         params: {
           api_key: '3e11806009cadfb91187ad7b65b9dc21',
           language: 'en_US',
-          query: 'Jack Reacher',
+          query: `jack reacher`,
         },
       })
       // set the results to state
@@ -25,9 +28,15 @@ const SearchInput = props => {
       })
       // catch errors
       .catch(err => console.log(err))
-  }, [])
+  }, [input.title])
 
   // add a handle change for the search bar
+  const handleChange = event => {
+    const { name, value } = event.target
+    setInput({
+      [name]: value,
+    })
+  }
 
   // add a handle submit for the form
 
@@ -37,7 +46,8 @@ const SearchInput = props => {
         type='text'
         name='movie'
         placeholder='...Search'
-        value={movie.title}
+        value={input.title}
+        onChange={handleChange}
         onSubmit={MovieSearch}
       />
     </form>
