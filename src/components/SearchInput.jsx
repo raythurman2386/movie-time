@@ -27,12 +27,15 @@ const SearchInput = props => {
       .catch(err => console.log(err))
   }, [])
 
+  // add a handle change for the search bar
+
+  // add a handle submit for the form
+
   return (
     <form>
       <Input
-        type='search'
-        className='search-input'
-        name='movie-search'
+        type='text'
+        name='movie'
         placeholder='...Search'
         value={movie.title}
         onSubmit={MovieSearch}
