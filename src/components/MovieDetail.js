@@ -31,14 +31,11 @@ const MovieDetail = props => {
   // console.log(movie, 'movie')
   // console.log(movie.movie.id, 'movie id');
 
-  // set variable to remove redundancy
-  // const movieInfo = movie.movie;
-
   return (
     <MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
       <MovieInfo>
         <Link to='/'>
-          {/* <Overdrive id={movieInfo.id}> */}
+          {/* <Overdrive id={movie.id}> */}
           <Poster
             src={`${POSTER_PATH}${movie.poster_path}`}
             alt={movie.title}
