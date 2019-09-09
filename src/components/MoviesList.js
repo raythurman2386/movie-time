@@ -6,9 +6,7 @@ import axios from 'axios'
 
 const MoviesList = () => {
   // hook for the movies
-  const [movies, setMovies] = useState({
-    movies: [],
-  })
+  const [movies, setMovies] = useState([])
 
   // hook to grab the movies
   useEffect(() => {
@@ -32,9 +30,9 @@ const MoviesList = () => {
 
   return (
     <MovieGrid>
-      {/* {movies.map(movie => (
+      {movies.map(movie => (
         <Movie key={movie.id} movie={movie} />
-      ))} */}
+      ))}
     </MovieGrid>
   )
 }
