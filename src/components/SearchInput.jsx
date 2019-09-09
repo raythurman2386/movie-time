@@ -5,7 +5,7 @@ import MovieSearch from './MovieSearch'
 const SearchInput = props => {
   return (
     <form>
-      <input
+      <Input
         type='search'
         className='search-input'
         name='movie-search'
@@ -19,11 +19,11 @@ const SearchInput = props => {
 
 export default SearchInput
 
-const searchInput = styled.input`
-  margin: '0 .25rem';
-  padding: '0.5rem';
-  minwidth: '125px';
-  border: '1px solid #eee';
-  borderradius: '5px';
-  transition: 'border-color .5s ease-out';
+const Input = styled.input`
+  margin: 0 0.25rem;
+  padding: 0.5rem;
+  min-width: 125px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  transition: border-color 0.5s ease-out;
 `
