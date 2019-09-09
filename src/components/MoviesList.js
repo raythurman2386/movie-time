@@ -22,7 +22,7 @@ const MoviesList = () => {
       .catch(err => console.log(err.response))
   }, [])
 
-  console.log(movies, 'movies')
+  // console.log(movies, 'movies')
 
   if (!movies) {
     return <div>Loading movies...</div>
