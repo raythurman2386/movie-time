@@ -11,24 +11,24 @@ const SearchInput = props => {
   })
 
   // hook for api
-  useEffect(() => {
-    axios
-      // get data from the API
-      .get('https://api.themoviedb.org/3/search/movie?', {
-        params: {
-          api_key: '3e11806009cadfb91187ad7b65b9dc21',
-          language: 'en_US',
-          query: `jack reacher`,
-        },
-      })
-      // set the results to state
-      .then(res => {
-        console.log(res.data.results, 'response')
-        setMovie({ movie: res.data })
-      })
-      // catch errors
-      .catch(err => console.log(err))
-  }, [input.title])
+  // useEffect(() => {
+  //   axios
+  //     // get data from the API
+  //     .get('https://api.themoviedb.org/3/search/movie?', {
+  //       params: {
+  //         api_key: '3e11806009cadfb91187ad7b65b9dc21',
+  //         language: 'en_US',
+  //         query: `${input.title}`,
+  //       },
+  //     })
+  //     // set the results to state
+  //     .then(res => {
+  //       console.log(res.data.results, 'response')
+  //       setMovie({ movie: res.data })
+  //     })
+  //     // catch errors
+  //     .catch(err => console.log(err))
+  // }, [input.title])
 
   // add a handle change for the search bar
   const handleChange = event => {
@@ -39,6 +39,25 @@ const SearchInput = props => {
   }
 
   // add a handle submit for the form
+  const handleSubmit = e => {
+    e.preventDefault()
+    axios
+      // get data from the API
+      .get('https://api.themoviedb.org/3/search/movie?', {
+        params: {
+          api_key: '3e11806009cadfb91187ad7b65b9dc21',
+          language: 'en_US',
+          query: `${input.title}`,
+        },
+      })
+      // set the results to state
+      .then(res => {
+        console.log(res.data.results, 'response')
+        setMovie({ movie: res.data })
+      })
+      // catch errors
+      .catch(err => console.log(err))
+  }
 
   return (
     <form>
@@ -47,8 +66,8 @@ const SearchInput = props => {
         name='movie'
         placeholder='...Search'
         value={input.title}
-        onChange={handleChange}
-        onSubmit={MovieSearch}
+        onChange={e => handleChange(e)}
+        onSubmit={handleSubmit}
       />
     </form>
   )
