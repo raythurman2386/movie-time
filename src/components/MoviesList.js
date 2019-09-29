@@ -30,9 +30,7 @@ const MoviesList = () => {
 
   return (
     <MovieGrid>
-      {movies.map(movie => (
-        <Movie key={movie.id} movie={movie} />
-      ))}
+      {movies && movies.map(movie => <Movie key={movie.id} movie={movie} />)}
     </MovieGrid>
   )
 }
