@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
-import axios from 'axios'
 import styled from 'styled-components'
 import MoviesList from './components/MoviesList'
 import MovieDetail from './components/MovieDetail'
@@ -10,36 +9,8 @@ import SearchInput from './components/SearchInput'
 import Logo from './images/movietime.svg'
 
 const App = () => {
-  // movies hook for state
+  // movies hook for search
   const [movie, setMovie] = useState([])
-  const [input, setInput] = useState('')
-
-  // add a handle change for the search bar
-  const handleChange = event => {
-    const { value } = event.target
-    setInput(value)
-  }
-
-  // add a handle submit for the form
-  const handleSubmit = e => {
-    e.preventDefault()
-    axios
-      // get data from the API
-      .get('https://api.themoviedb.org/3/search/movie?', {
-        params: {
-          api_key: '3e11806009cadfb91187ad7b65b9dc21',
-          language: 'en_US',
-          query: `${input}`,
-        },
-      })
-      // set the results to state
-      .then(res => {
-        console.log(res.data.results, 'response')
-        setMovie(res.data.results)
-      })
-      // catch errors
-      .catch(err => console.log(err))
-  }
 
   return (
     <Router>
@@ -48,19 +19,12 @@ const App = () => {
           <Link to='/'>
             <HeaderWrapper src={Logo} alt='movie time' />
           </Link>
-          <SearchInput
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            input={input}
-          />
+          <SearchInput movie={movie} setMovie={setMovie} />
         </AppHeader>
         <Switch>
           <Route exact path='/' render={props => <MoviesList {...props} />} />
           <Route path='/:id' render={props => <MovieDetail {...props} />} />
-          <Route
-            path='/search'
-            render={props => <MovieSearch {...props} movie={movie} />}
-          />
+          <Route path='/search' render={props => <MovieSearch {...props} />} />
         </Switch>
       </AppWrapper>
     </Router>

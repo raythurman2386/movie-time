@@ -1,7 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
 
-const SearchInput = ({ handleChange, handleSubmit, input }) => {
+const SearchInput = ({ movie, setMovie }) => {
+  const [input, setInput] = useState('')
+
+  // add a handle change for the search bar
+  const handleChange = event => {
+    const { value } = event.target
+    setInput(value)
+  }
+
+  // add a handle submit for the form
+  const handleSubmit = e => {
+    e.preventDefault()
+    axios
+      // get data from the API
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=65e043c24785898be00b4abc12fcdaae&query=${input}`,
+      )
+      // set the results to state
+      .then(res => {
+        console.log(res.data.results, 'response')
+        setMovie(res.data.results)
+      })
+      // catch errors
+      .catch(err => console.log(err))
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <Input

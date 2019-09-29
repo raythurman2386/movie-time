@@ -7,12 +7,13 @@ import axios from 'axios'
 const MoviesList = () => {
   // hook for the movies
   const [movies, setMovies] = useState([])
+  const [page, setPage] = useState(1)
 
   // hook to grab the movies
   useEffect(() => {
     axios
       .get(
-        'https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&page=1',
+        `https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}`,
       )
       .then(res => {
         // set the movies to state
@@ -20,22 +21,36 @@ const MoviesList = () => {
       })
       // error handling
       .catch(err => console.log(err.response))
-  }, [])
-
-  // console.log(movies, 'movies')
+  }, [page])
 
   if (!movies) {
     return <div>Loading movies...</div>
   }
 
   return (
-    <MovieGrid>
-      {movies && movies.map(movie => <Movie key={movie.id} movie={movie} />)}
-    </MovieGrid>
+    <>
+      <ButtonGrid>
+        <button onClick={() => setPage(page - 1)}>Previous</button>
+        {page}
+        <button onClick={() => setPage(page + 1)}>Next Page</button>
+      </ButtonGrid>
+      <MovieGrid>
+        {movies && movies.map(movie => <Movie key={movie.id} movie={movie} />)}
+      </MovieGrid>
+    </>
   )
 }
 
 export default MoviesList
+
+const ButtonGrid = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  color: white;
+  max-width: 1280px;
+  margin: auto;
+  padding: 1rem;
+`
 
 const MovieGrid = styled.div`
   max-width: 1280px;
