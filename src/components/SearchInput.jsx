@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const SearchInput = ({ movie, setMovie }) => {
+const SearchInput = ({ setMovie }) => {
   const [input, setInput] = useState('')
 
   // add a handle change for the search bar

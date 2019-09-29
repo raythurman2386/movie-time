@@ -7,8 +7,6 @@ import Movie from './Movie'
 const MovieSearch = props => {
   return (
     <MovieGrid>
-      {/* { Loop over data and display } */}
-      {/* {movies.movies.map((movie) => console.log(movie.id, 'inside'))}, */}
       {props.movie &&
         props.movie.map(movie => <Movie key={movie.id} movie={movie} />)}
     </MovieGrid>

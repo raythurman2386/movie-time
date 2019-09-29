@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Poster } from './Movie'
-// import Overdrive from 'react-overdrive'
 
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w154'
 const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280'
@@ -11,7 +10,7 @@ const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280'
 const MovieDetail = props => {
   // movies hook for state
   const [movie, setMovie] = useState([])
-  // console.log(props, 'props');
+
   // hook for api
   useEffect(() => {
     axios
@@ -21,7 +20,6 @@ const MovieDetail = props => {
       )
       // set the results to state
       .then(response => {
-        // console.log(response, 'response')
         setMovie(response.data)
       })
       // catch errors
@@ -32,12 +30,10 @@ const MovieDetail = props => {
     <MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>
       <MovieInfo>
         <Link to='/'>
-          {/* <Overdrive id={movie.id}> */}
           <Poster
             src={`${POSTER_PATH}${movie.poster_path}`}
             alt={movie.title}
           />
-          {/* </Overdrive> */}
         </Link>
         <div>
           <h1>{movie.title}</h1>
