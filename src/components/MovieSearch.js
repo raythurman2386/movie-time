@@ -1,14 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-
-// import { Link } from 'react-router-dom';
 import Movie from './Movie'
 
 const MovieSearch = props => {
   return (
     <MovieGrid>
       {props.movie &&
-        props.movie.map(movie => <Movie key={movie.id} movie={movie} />)}
+        props.movie.map(item => <Movie key={item.id} movie={item} />)}
     </MovieGrid>
   )
 }

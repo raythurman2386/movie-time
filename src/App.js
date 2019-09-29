@@ -24,7 +24,10 @@ const App = () => {
         <Switch>
           <Route exact path='/' render={props => <MoviesList {...props} />} />
           <Route path='/:id' render={props => <MovieDetail {...props} />} />
-          <Route path='/search' render={props => <MovieSearch {...props} />} />
+          <Route
+            path='/search'
+            render={props => <MovieSearch {...props} movie={movie} />}
+          />
         </Switch>
       </AppWrapper>
     </Router>
