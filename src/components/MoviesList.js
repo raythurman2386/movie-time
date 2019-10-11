@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Movie from './Movie'
 import axios from 'axios'
+import { api_key } from '../private/private'
 
 const MoviesList = () => {
   // hook for the movies
@@ -12,7 +13,7 @@ const MoviesList = () => {
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=65e043c24785898be00b4abc12fcdaae&language=en-US&sort_by=popularity.desc&include_adult=false&page=${page}`,
+        `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&page=${page}`,
       )
       .then(res => {
         // set the movies to state
