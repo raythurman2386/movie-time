@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import MoviesList from './components/MoviesList'
 import MovieDetail from './components/MovieDetail'
@@ -13,24 +13,22 @@ const App = () => {
   const [movie, setMovie] = useState([])
 
   return (
-    <Router>
-      <AppWrapper className='App'>
-        <AppHeader className='App-header'>
-          <Link to='/'>
-            <HeaderWrapper src={Logo} alt='movie time' />
-          </Link>
-          <SearchInput movie={movie} setMovie={setMovie} />
-        </AppHeader>
-        <Switch>
-          <Route exact path='/' render={props => <MoviesList {...props} />} />
-          <Route path='/:id' render={props => <MovieDetail {...props} />} />
-          <Route
-            path='/search'
-            render={props => <MovieSearch {...props} movie={movie} />}
-          />
-        </Switch>
-      </AppWrapper>
-    </Router>
+    <AppWrapper className='App'>
+      <AppHeader className='App-header'>
+        <Link to='/'>
+          <HeaderWrapper src={Logo} alt='movie time' />
+        </Link>
+        <SearchInput movie={movie} setMovie={setMovie} />
+      </AppHeader>
+      <Switch>
+        <Route exact path='/' render={props => <MoviesList {...props} />} />
+        <Route path='/:id' render={props => <MovieDetail {...props} />} />
+        <Route
+          path='/search'
+          render={props => <MovieSearch {...props} movie={movie} />}
+        />
+      </Switch>
+    </AppWrapper>
   )
 }
 
