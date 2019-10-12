@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Poster } from './Movie'
+import { useAxios } from '../hooks/useAxios'
+import { api_key } from '../private/private'
 
 const POSTER_PATH = 'http://image.tmdb.org/t/p/w154'
 const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280'
 
 const MovieDetail = props => {
+  let id = props.match.params.id
   // movies hook for state
-  const [movie, setMovie] = useState([])
+  const [movie, setMovie] = useAxios(
+    id,
+    `https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=en-US&append_to_response=videos`,
+  )
 
-  // hook for api
-  useEffect(() => {
-    axios
-      // get data from the API
-      .get(
-        `https://api.themoviedb.org/3/movie/${props.match.params.id}?api_key=3e11806009cadfb91187ad7b65b9dc21&language=en-US&append_to_response=videos`,
-      )
-      // set the results to state
-      .then(response => {
-        setMovie(response.data)
-      })
-      // catch errors
-      .catch(err => console.log(err))
-  }, [props.match.params.id])
+  if (!movie) {
+    return <h1>. . . Loading</h1>
+  }
 
   return (
     <MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>

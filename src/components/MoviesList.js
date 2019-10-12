@@ -1,32 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Movie from './Movie'
-import axios from 'axios'
 import { api_key } from '../private/private'
 import { useLocalStorage } from '../hooks/useLocalStorage'
+import { useAxios } from '../hooks/useAxios'
 
 const MoviesList = () => {
   // hook for the movies
-  const [movies, setMovies] = useState([])
   const [page, setPage] = useLocalStorage(1)
-
-  // hook to grab the movies
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&page=${page}`,
-      )
-      .then(res => {
-        // set the movies to state
-        setMovies(res.data.results)
-      })
-      // error handling
-      .catch(err => console.log(err.response))
-  }, [page])
-
-  if (!movies) {
-    return <div>Loading movies...</div>
-  }
+  const [movies] = useAxios(
+    page,
+    `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&page=${page}`,
+  )
 
   return (
     <>
