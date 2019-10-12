@@ -5,20 +5,13 @@ import { Poster } from './Movie'
 import { useAxios } from '../hooks/useAxios'
 import { api_key } from '../private/private'
 
-const POSTER_PATH = 'http://image.tmdb.org/t/p/w154'
-const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280'
-
 const MovieDetail = props => {
-  let id = props.match.params.id
-  // movies hook for state
-  const [movie, setMovie] = useAxios(
-    id,
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${api_key}&language=en-US&append_to_response=videos`,
+  const { movie } = useAxios(
+    `https://api.themoviedb.org/3/movie/${props.match.params.id}?api_key=${api_key}&language=en-US&append_to_response=videos`,
   )
 
-  if (!movie) {
-    return <h1>. . . Loading</h1>
-  }
+  const POSTER_PATH = 'http://image.tmdb.org/t/p/w154'
+  const BACKDROP_PATH = 'http://image.tmdb.org/t/p/w1280'
 
   return (
     <MovieWrapper backdrop={`${BACKDROP_PATH}${movie.backdrop_path}`}>

@@ -8,8 +8,7 @@ import { useAxios } from '../hooks/useAxios'
 const MoviesList = () => {
   // hook for the movies
   const [page, setPage] = useLocalStorage(1)
-  const [movies] = useAxios(
-    page,
+  const { movies } = useAxios(
     `https://api.themoviedb.org/3/discover/movie?api_key=${api_key}&sort_by=popularity.desc&page=${page}`,
   )
 
