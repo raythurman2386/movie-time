@@ -3,11 +3,12 @@ import styled from 'styled-components'
 import Movie from './Movie'
 import axios from 'axios'
 import { api_key } from '../private/private'
+import { useLocalStorage } from '../hooks/useLocalStorage'
 
 const MoviesList = () => {
   // hook for the movies
   const [movies, setMovies] = useState([])
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useLocalStorage(1)
 
   // hook to grab the movies
   useEffect(() => {
