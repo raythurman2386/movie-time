@@ -1,32 +1,29 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Route, Switch, Link } from 'react-router-dom'
 import styled from 'styled-components'
 import MoviesList from './components/MoviesList'
 import MovieDetail from './components/MovieDetail'
-import MovieSearch from './components/MovieSearch'
-import SearchInput from './components/SearchInput'
+// import MovieSearch from './components/MovieSearch'
+// import SearchInput from './components/SearchInput'
 
 import Logo from './images/movietime.svg'
 
 const App = () => {
-  // movies hook for search
-  const [movie, setMovie] = useState([])
-
   return (
     <AppWrapper className='App'>
       <AppHeader className='App-header'>
         <Link to='/'>
           <HeaderWrapper src={Logo} alt='movie time' />
         </Link>
-        <SearchInput movie={movie} setMovie={setMovie} />
+        {/* <SearchInput movie={movie} setMovie={setMovie} /> */}
       </AppHeader>
       <Switch>
         <Route exact path='/' render={props => <MoviesList {...props} />} />
         <Route path='/:id' render={props => <MovieDetail {...props} />} />
-        <Route
+        {/* <Route
           path='/search'
           render={props => <MovieSearch {...props} movie={movie} />}
-        />
+        /> */}
       </Switch>
     </AppWrapper>
   )
